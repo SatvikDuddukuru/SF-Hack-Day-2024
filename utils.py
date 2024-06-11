@@ -1,3 +1,5 @@
+import base64
+import mimetypes
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 from pptx.shapes.placeholder import PlaceholderPicture
 
@@ -13,8 +15,8 @@ class Feedback:
     def format_json(self):
         return {
             "slide": self.slide_number,
-            "feedback": "\r\n".join(self.feedback),
-            #"images": self.adjusted_images
+            "feedback": self.feedback,
+            "images": self.adjusted_images
         }
 
 
@@ -34,3 +36,14 @@ def write_image(image, filename):
     with open(filename, "wb") as f:
         f.write(image.blob)
     return filename
+
+def get_image_uri(filename):
+    mime, _ = mimetypes.guess_type(filename)
+    with open(filename, "rb") as file:
+        data = file.read()
+        d = base64.encodebytes(data).splitlines()
+        data64 = u''
+        for i in d:
+            data64 = data64 + i.decode()
+        return u'data:%s;base64,%s' % (mime, data64)
+

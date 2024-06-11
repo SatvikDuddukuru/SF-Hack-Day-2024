@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image, ImageOps
+from utils import get_image_uri
 
 def process_image(img, cb_type):
     img_arr = np.array(img)
@@ -85,4 +86,5 @@ def process_image(img, cb_type):
 
 def process_for_all(filename, fb):
     img = Image.open(filename)
-    fb.add_image(process_image(process_image(process_image(img, 0), 1), 2))
+    process_image(process_image(process_image(img, 0), 1), 2).save(filename)
+    fb.add_image(get_image_uri(filename))
