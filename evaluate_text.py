@@ -6,12 +6,10 @@ def evaluate_text(slide, fb):
     check_visibility(slide, fb)
 
 def check_fonts(slide, fb):
-    try:
+    if slide.shapes.title is not None:
         title_font = slide.shapes.title.text_frame.paragraphs[0].font.name
         if title_font not in ["Mecherle Sans Semibold", "Mecherle Sans Slab Regular"]:
             fb.add_feedback(f"Consider changing the font of the title '{slide.shapes.title}' from {title_font} to Mecherle Sans Semibold or Mecherle Sans Slab Regular")
-    except AttributeError:
-        pass
     for shape in slide.shapes:
         if shape.has_text_frame:
             text_frame = shape.text_frame
@@ -25,9 +23,10 @@ def check_fonts(slide, fb):
 
 
 def check_alignment(slide, fb):
-    title_align = slide.shapes.title.text_frame.paragraphs[0].alignment
-    if title_align not in [PP_ALIGN.CENTER, PP_ALIGN.LEFT]:
-        fb.add_feedback("Titles should be left or center aligned")
+    if slide.shapes.title is not None:
+        title_align = slide.shapes.title.text_frame.paragraphs[0].alignment
+        if title_align not in [PP_ALIGN.CENTER, PP_ALIGN.LEFT]:
+            fb.add_feedback("Titles should be left or center aligned")
     for shape in slide.shapes:
         if shape.has_text_frame:
             text_frame = shape.text_frame
