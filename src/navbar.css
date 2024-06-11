@@ -1,0 +1,11 @@
+/* custom.css */
+@import 'tailwindcss/tailwind.css';
+
+.custom-navbar {
+  @apply bg-custom-color !important; /* Apply custom background color */
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+  @apply text-white !important; /* Apply text color */
+}
