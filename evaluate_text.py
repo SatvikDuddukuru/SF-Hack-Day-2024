@@ -6,9 +6,12 @@ def evaluate_text(slide, fb):
     check_visibility(slide, fb)
 
 def check_fonts(slide, fb):
-    title_font = slide.shapes.title.text_frame.paragraphs[0].font.name
-    if title_font not in ["Mecherle Sans Semibold", "Mecherle Sans Slab Regular"]:
-        fb.add_feedback(f"Consider changing the font of the title '{slide.shapes.title}' from {title_font} to Mecherle Sans Semibold or Mecherle Sans Slab Regular")
+    try:
+        title_font = slide.shapes.title.text_frame.paragraphs[0].font.name
+        if title_font not in ["Mecherle Sans Semibold", "Mecherle Sans Slab Regular"]:
+            fb.add_feedback(f"Consider changing the font of the title '{slide.shapes.title}' from {title_font} to Mecherle Sans Semibold or Mecherle Sans Slab Regular")
+    except AttributeError:
+        pass
     for shape in slide.shapes:
         if shape.has_text_frame:
             text_frame = shape.text_frame
@@ -45,5 +48,5 @@ def check_visibility(slide, fb):
                     fb.add_feedback(f"Consider increasing the font size from {paragraph.font.size} to at least 12")
                 if len(paragraph.text.split(" ")) > 20:
                     fb.add_feedback(f"Consider breaking this up into more easily digestible chunks")
-                # if paragraph.font.color.rgb:
+                # print(paragraph.font.color.rgb.)
                     # do color stuff here
