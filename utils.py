@@ -13,7 +13,7 @@ class Feedback:
     def format_json(self):
         return {
             "slide": self.slide_number,
-            "feedback": self.feedback,
+            "feedback": "\n".join(self.feedback),
             "images": self.adjusted_images
         }
 

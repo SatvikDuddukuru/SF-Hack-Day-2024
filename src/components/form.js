@@ -6,7 +6,8 @@ import React, {useState, useRef} from 'react';
 
 function FormInput() {
     const [file, setFile] = useState(null);
-    const [feedback, setFeedback] = useState('');
+    const [feedback, setFeedback] = useState([]);
+    const [jsonData, setJsonData] = useState(null);
     const fileInputRef = useRef();
 
     const handleFileChange = (event) => {
@@ -35,7 +36,23 @@ function FormInput() {
       } catch (error) {
         console.error('Error:', error);
       }
+
+      getFeedback();
       
+    }
+
+    const getFeedback = async () => {
+      console.log("shirley");
+      try {
+        const response = await axios.get('http://127.0.0.1:5000/get-feedback');
+        setJsonData(response.data);
+        setFeedback(response.data.feedback);
+        console.log(response.data);
+        console.log("shirley");
+  
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
 
     return (
@@ -62,7 +79,7 @@ function FormInput() {
               </Form.Group>
             </div>
             <div className="w-full max-w-4xl mt-12 p-4 border-2 border-red-500 text-center h-80">
-              {/* Feedback content goes here */}
+              {feedback}
             </div>
           </div>
         </>
