@@ -1,4 +1,4 @@
-import './App.css';
+
 import Home from './pages/home.js'
 import './index.css';
 import Upload from './components/upload.js';
