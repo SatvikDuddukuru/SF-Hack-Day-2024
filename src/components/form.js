@@ -97,6 +97,11 @@ function FormInput() {
                   <li key={index}>{item.trim()}</li>
                 ))}
               </div>
+              <div className="p-2 border-b text-left border-gray-200">
+              {feedback[myIndex].images.map((item, index) => (
+                  <img src={item}></img>
+                ))}
+              </div>
             </div>
           )}
           <div className="mt-4">

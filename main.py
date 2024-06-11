@@ -17,7 +17,6 @@ def run(filename):
                 if image is not None:
                     write_image(image, f"{i}_{j}.jpg")
                     process_for_all(f"{i}_{j}.jpg", fb)
-                    get_image_uri(f"{i}_{j}.jpg")
                     os.remove(f"{i}_{j}.jpg")
         fbs.append(fb)
     return [fb.format_json() for fb in fbs]

@@ -76,7 +76,7 @@ def process_image(img, cb_type):
         ]
     )
     tritanopia_shift = np.matmul(tritanopia_shift_matrix, d_tritanopia)
-    shift_scale = 1 / 255
+    shift_scale = 1 / 50
     rgb_processed_for_protanopia = rgb_vector + protanopia_shift * shift_scale
     rgb_processed_for_duteranopia = rgb_vector + duteranopia_shift * shift_scale
     rgb_processed_for_tritanopia = rgb_vector + tritanopia_shift * shift_scale
@@ -86,5 +86,5 @@ def process_image(img, cb_type):
 
 def process_for_all(filename, fb):
     img = Image.open(filename)
-    process_image(process_image(process_image(img, 0), 1), 2).save(filename)
+    process_image(process_image(process_image(img, 0), 1), 2).convert("RGB").save(filename)
     fb.add_image(get_image_uri(filename))
