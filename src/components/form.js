@@ -9,7 +9,8 @@ function FormInput() {
     const [feedback, setFeedback] = useState([]);
     const [jsonData, setJsonData] = useState(null);
     const fileInputRef = useRef();
-
+    const [myIndex, setMyIndex] = useState(0);
+    
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     };
@@ -46,7 +47,7 @@ function FormInput() {
       try {
         const response = await axios.get('http://127.0.0.1:5000/get-feedback');
         setJsonData(response.data);
-        setFeedback(response.data.feedback);
+        setFeedback(response.data);
         console.log(response.data);
         console.log("test");
   
@@ -79,7 +80,16 @@ function FormInput() {
               </Form.Group>
             </div>
             <div className="w-full max-w-4xl mt-12 p-4 border-2 border-red-500 text-center h-80">
-              {feedback[0]}
+              {feedback.length > 0 && (
+                <div>
+                  {feedback.map((item, index) => (
+                    <div key={index} className="p-2 border-b text-left border-gray-200">
+                      {index == myIndex && item.feedback}
+                      
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </>
