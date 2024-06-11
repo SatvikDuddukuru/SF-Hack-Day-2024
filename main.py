@@ -13,8 +13,10 @@ def run(filename):
         evaluate_text(slide, fb)
         for j, shape in enumerate(slide.shapes):
             if is_image(shape):
-                write_image(get_image(shape), f"{i}_{j}.jpg")
-                process_for_all(f"{i}_{j}.jpg", fb)
-                os.remove(f"{i}_{j}.jpg")
+                image = get_image(shape)
+                if image is not None:
+                    write_image(image, f"{i}_{j}.jpg")
+                    process_for_all(f"{i}_{j}.jpg", fb)
+                    os.remove(f"{i}_{j}.jpg")
         fbs.append(fb)
     return [fb.format_json() for fb in fbs]
