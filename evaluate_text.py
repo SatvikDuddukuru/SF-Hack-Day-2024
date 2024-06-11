@@ -43,5 +43,7 @@ def check_visibility(slide, fb):
             for paragraph in text_frame.paragraphs:
                 if paragraph.font.size < 12:
                     fb.add_feedback(f"Consider increasing the font size from {paragraph.font.size} to at least 12")
+                if len(paragraph.text.split(" ")) > 20:
+                    fb.add_feedback(f"Consider breaking this up into more easily digestible chunks")
                 # if paragraph.font.color.rgb:
                     # do color stuff here
