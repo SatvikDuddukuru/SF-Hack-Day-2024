@@ -88,13 +88,13 @@ function FormInput() {
             </div>
           </Form.Group>
         </div>
-        <div className="w-full max-w-4xl mt-12 p-4 border-2 border-red-500 text-center h-80">
+        <div className="w-full max-w-4xl mt-12 p-4 border-2 border-red-500 text-center ">
           {feedback.length > 0 && (
             <div>
-              <p className="text-lg font-semibold">Slide Number: {myIndex + 1}</p>
+              <p className="text-lg font-semibold">Slide {myIndex + 1}</p>
               <div className="p-2 border-b text-left border-gray-200">
-              {feedback[myIndex].feedback.split('•').map((item, index) => (
-                  <p key={index}>{item.trim()}</p>
+              {feedback[myIndex].feedback.split('•').slice(1).map((item, index) => (
+                  <li key={index}>{item.trim()}</li>
                 ))}
               </div>
             </div>
