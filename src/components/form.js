@@ -48,7 +48,7 @@ function FormInput() {
         setJsonData(response.data);
         setFeedback(response.data.feedback);
         console.log(response.data);
-        console.log("shirley");
+        console.log("test");
   
       } catch (error) {
         console.error('Error:', error);
@@ -79,7 +79,7 @@ function FormInput() {
               </Form.Group>
             </div>
             <div className="w-full max-w-4xl mt-12 p-4 border-2 border-red-500 text-center h-80">
-              {feedback}
+              {feedback[0]}
             </div>
           </div>
         </>

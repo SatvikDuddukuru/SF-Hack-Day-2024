@@ -14,7 +14,7 @@ class Feedback:
         return {
             "slide": self.slide_number,
             "feedback": "\n".join(self.feedback),
-            "images": self.adjusted_images
+            #"images": self.adjusted_images
         }
 
 
